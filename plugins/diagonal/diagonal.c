@@ -1,7 +1,7 @@
 #include "thplugin.h"
 #include <stdlib.h>
 
-INIT_PLUGIN("Diagonals (C) 2004 Panayotis Katsaloulis panayotis@panayotis.com under GNU GPL", TH_PLUG_BITMAP)
+INIT_PLUGIN("Diagonals (C) 2004 Panayotis Katsaloulis http://www.panayotis.com under GNU GPL", TH_PLUG_BITMAP)
 
 void shakeIt ( thText * ttext, float distortion ) {
 	int x,y;

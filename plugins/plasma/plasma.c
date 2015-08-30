@@ -4,7 +4,7 @@
 
 #define pow2(X)		(1<<(X))
 
-INIT_PLUGIN("Plasma (C) 2004 Panayotis Katsaloulis panayotis@panayotis.com under GNU GPL", TH_PLUG_BITMAP)
+INIT_PLUGIN("Plasma (C) 2004 Panayotis Katsaloulis http://www.panayotis.com under GNU GPL", TH_PLUG_BITMAP)
 
 #define array(X,Y)	plasma[(X)+(Y)*pwidth]
 

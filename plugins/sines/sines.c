@@ -3,7 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 
-INIT_PLUGIN("Sines (C) 2004 Panayotis Katsaloulis panayotis@panayotis.com under GNU GPL", TH_PLUG_BITMAP)
+INIT_PLUGIN("Sines (C) 2004 Panayotis Katsaloulis http://www.panayotis.com under GNU GPL", TH_PLUG_BITMAP)
 
 
 void shakeIt ( thText * ttext, float distortion ) {

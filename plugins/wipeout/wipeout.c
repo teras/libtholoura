@@ -1,7 +1,7 @@
 #include "thplugin.h"
 #include <stdlib.h>
 
-INIT_PLUGIN ("Wipe out (C) 2004 Panayotis Katsaloulis panayotis@panayotis.com under the GNU GPL", TH_PLUG_BITMAP)
+INIT_PLUGIN ("Wipe out (C) 2004 Panayotis Katsaloulis http://www.panayotis.com under the GNU GPL", TH_PLUG_BITMAP)
 
 void shakeIt ( thText * ttext, float distortion ) {
 	int i,j;
