@@ -1,0 +1,117 @@
+libtholoura
+===========
+
+Introduction
+------------
+
+This is a text-image distortion library, useful for sites that want
+to ensure that a human (and not a bot) is viewing this page. It is
+optimized to produce images of strings distorted in a way that made
+impossible for an OCR to read, but humans do.
+
+The library takes as input any (ASCII preferably) string and is able
+to dynamically produce PNG indexed images (with 256 colors, interlaced)
+with the distorted image. In order to check this library a test program
+is provided.
+
+Another feature of this library is that the distortion filters are
+actually plugins (i.e. dynamic libraries itself). It is easy to add
+or remove plugins on demand without the need to recompile the library
+itself. As an extra value, it is possible to (easily) create new plugins
+since the developer does not need to deal with things like "how to produce
+an PNG" or "how to render text"; the only thing is needed is to be able
+to deal with a fixed size table (and a structure defining this table).
+
+
+Compilation
+-----------
+
+(Short description)
+Just install the development files for libpng and freetype2 (if you
+haven't already in your system) and then type "make".
+
+
+(Long description)
+This project does not support autoconf/automake tools, since it is
+simple enough and adding the extra complexity of these tools is not
+really necessary. Still, if you think you could provide a proper
+set of rules which is able to do fairly the same as what the default
+makefiles do, you are welcomed to do so.
+
+This library depends on 2 other libraries. Please install them prior
+of the compilation.
+
+1) libpng
+  You have to install the development files of libpng in order to
+  properly compile it. In my system I happen to have installed version
+  1.2.8beta5-2, but since I haven't used any special features, I expect
+  that any valid libpng development installation should be suffice.
+  If you have a debian system, "apt-get install libpng3-dev" should be
+  enough.
+
+2) freetype2
+  Again, the development files of freetype2 library are needed. In my
+  system these have version 2.0.9-1. Again, in a debian system you
+  could try "apt-get install libfreetype6-dev"
+
+If the libraries are not installed in system-wide position, then it is
+advisable to edit the src/Makefile and append the required library
+and include search path, to the template provided there.
+
+Then, you have to do some manual configuration (although the default
+should be enough. Open the top-level directory Makefile and at the 
+beginning there is a user provided part. It is important to edit now
+not only the directory where the configuration file should be saved
+( defaults to "/etc" ) but also the installation prefix ( defaults
+to "/usr/local" ). Also the default font file should be provided. Some
+of these data are needed for the compilation of the program.
+
+
+The last step is to execute the "make" command. Then the program will
+compile recursively all needed programs. If something goes wrong here, 
+please send me information about it and I'll try to correct it.
+
+
+Installation
+------------
+
+Installation should be fairly easy. First become root (if you want to
+compile it somewhere system wide - check the configuration section
+above only if you want to change this default behavior). Then type
+"make install", make sure that the paths are correct and press [RETURN]
+to start the installation.
+
+
+Execution
+---------
+
+This is a library. Still, since everybody wants to directly see results,
+I have written a small test program to demonstrate it.
+
+At the top-level directory type "make testrun" or "make testdisplay" in
+order to run the test application and display the results with the
+"display" command.
+
+
+Development
+----------
+
+This is the most fun part. The library is modular itself. All distortions
+are performed though plugins, which are dynamic libraries itself. The
+linking is done during runtime, using the dlopen function, so the library
+does not need to be recompiled in order to add (or remove) a new plugin.
+Just edit the configuration file and add or remove plugins at will.
+
+First of all some notes about the library itself. Everything needed in
+order to understand and have a look at the library functions are described
+inside the file src/tholoura.h. There is also another (equally importand)
+file under plugins/thplugin.h which describes some basic datatypes of the
+library and the format of the thText, which is the struct describing the
+(distorted) text.
+
+In order to produce a new plugin, please first have a look at the
+thplugin.h file and then look at any simple plugin. Copy it, compile it,
+put it in the plugins directory, add a new entry in {etc}/tholoura.conf
+and you are ready. There is also a demo Makefile provided which is used
+in order to properly compile a (vanilla) plugin. This file lives in
+plugins/makefile.templ .
