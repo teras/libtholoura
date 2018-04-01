@@ -4,7 +4,7 @@
 
 PREFIX=/usr/local
 ETC=/etc
-FONTFILE=/usr/share/fonts/truetype/freefont/FreeSansBold.ttf
+FONTFILE=font/font.ttf
 
 
 ####################################
@@ -74,10 +74,11 @@ install:all
 	for i in `find plugins -name *.so` ; do ${CP} `pwd`/$$i ${PLUGINDIR}; done
 	mkdir -p ${ETC}
 	echo  >${ETCFILE} "# Use the following font file in order to render glyphs"
-	echo >>${ETCFILE} "fontfile=${FONTFILE}"
+	echo >>${ETCFILE} "fontfile=${PLUGINDIR}/font.ttf"
 	echo >>${ETCFILE}
 	echo >>${ETCFILE} "# List of available plugins"
 	cd ${PLUGINDIR} ; for i in `ls *.so` ; do echo >>${ETCFILE} "plugin=${PLUGINDIR}/$$i" ; done
+	${CP} "${FONTFILE}" ${PLUGINDIR}/font.ttf
 	${CP} `pwd`/src/libtholoura.so ${LIBDIR}
 
 uninstall:
