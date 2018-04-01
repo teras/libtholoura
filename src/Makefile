@@ -36,7 +36,7 @@ LIBDEBUG=-DDEBUG
 
 ## Compiler / linker defaults
 #
-CFLAGS = $(LIBDEBUG) $(DEBUG) -DETC=\"${ETC}\" -Wall $(shell freetype-config --cflags) $(INCPATH) -I../plugins -ansi -pedantic
+CFLAGS = $(LIBDEBUG) $(DEBUG) -DETC=\"${ETC}\" -Wall $(shell freetype-config --cflags) $(INCPATH) -I../plugins -ansi -pedantic -fPIC
 LDFLAGS =
 LDLIBFLAGS = $(DEBUG) $(shell freetype-config --libs) $(LIBPATH) -lpng -ldl
 

@@ -15,7 +15,7 @@ void thGetPNG (thLib *lib, thText * ttext, FILE * out) {
 	if ( lib == NULL || ttext == NULL ) return;
 	
 	/* Create PNG writing structure */
-	png_ptr = png_create_write_struct (PNG_LIBPNG_VER_STRING, png_voidp_NULL, png_error_ptr_NULL, png_error_ptr_NULL);
+	png_ptr = png_create_write_struct (PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (!png_ptr) return;
 
 	/* Create PNG info structure */
